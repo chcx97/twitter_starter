@@ -21,7 +21,7 @@ export default function TweetBox(props) {
     props.setTweetText(e.target.value);
     console.log(9999,props.tweetText);
     console.log(99,props.tweetText.length);
-    console.log(999,length);
+    console.log(9996,length);
     if (e.target.value.length == 0 || length > 140){
       setDisable(true);
       
@@ -55,7 +55,7 @@ export default function TweetBox(props) {
     console.log(589,newTweet.text);
     props.setTweetText("");
     
-    console.log(11111,props.tweetText.length);
+    console.log(11111,props.tweetText.length - 2);
   }
 
  
@@ -66,7 +66,7 @@ export default function TweetBox(props) {
 
       <div className="tweet-box-footer">
         <TweetBoxIcons />
-        <TweetCharacterCount tweet-length = {props.tweetText} />
+        <TweetCharacterCount length = {length - 1} />
         <TweetSubmitButton disable={disable} handleOnSubmit={handleOnSubmit} />
       </div>
     </div>
@@ -86,11 +86,14 @@ export function TweetBoxIcons() {
 
 export function TweetCharacterCount(props) {
   // ADD CODE HERE
-  console.log(223,props);
-  let length = props.tweet-length.length;
-  console.log(23,length);
-  console.log(2233, props.tweet-length.length);
-  return <span></span>
+  const {length} = props
+  let clear = "";
+  let lengthLeft = 140 - length
+  console.log(223,length);
+  //let length = props.tweet-length.length;
+  //console.log(23,length);
+  //console.log(2233, props.tweet-length.length);
+  return <span className="tweet-length">{length == 0? clear: lengthLeft}</span>
 }
 
 export function TweetSubmitButton(props) {
